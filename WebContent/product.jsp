@@ -8,8 +8,8 @@
 <html>
 <head>
 <title>The Coffee Shop - Product Information</title>
-<link href="css/bootstrap.min.css" rel="stylesheet">
 <link href="css/standardStyle.css" rel="stylesheet">
+
 </head>
 <body>
 

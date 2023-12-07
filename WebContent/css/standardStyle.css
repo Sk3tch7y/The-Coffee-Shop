@@ -28,13 +28,3 @@ h2{
     font-weight: 500;
     margin-bottom: 2rem;
 }
-.nav{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-    background-color: #B08968;
-    color: #EDE0D4;
-    box-shadow: 1px;
-}

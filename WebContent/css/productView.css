@@ -22,7 +22,7 @@ td{
     border-radius: 2rem;
     background-color: transparent;
 }
-#division{
+.division{
     align-items: center;
     border-radius: 30px;
     position: absolute;
@@ -32,18 +32,18 @@ td{
     padding-bottom:15rem;
     z-index: 2;
 }
-#productDisplay{
+.productDisplay{
     display:inline-block;
     position: relative;
     padding: 2rem;
     margin: 3rem;
 }
-#productDisplay td{
-    float:;
+.productDisplay td{
+    float: right;
     padding: 1rem;
     width: 20rem;   
 }
-#productDisplay img{
+.productDisplay img{
     width: 100%;
     height: 100%;
     position: absolute;
