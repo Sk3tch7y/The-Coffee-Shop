@@ -39,6 +39,11 @@ String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustS
         if(rst.getBinaryStream("productImage") != null){
             out.print("<img src = 'displayImage.jsp?id=" + id + "' class = 'img' alt = 'An image of " + prodName + "'></img>");
         }
+        out.println("<br><a href='review.jsp?id=");
+		//push name, price, and ID to reviews page
+		out.print(rst.getString("productId"))+ "'>";
+        out.println("<h2>Reviews</h2></a>")
+        
         out.println("<br><a class = 'addToCart' href='addcart.jsp?id=");
 		//push name, price, and ID to cart page
 		out.print(rst.getString("productId"));
@@ -49,6 +54,7 @@ String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustS
 		out.print("'>");
 		out.print("<h2>Add to Cart</h2></a>");
         out.println("<a class = 'cont' href = 'listprod.jsp'><h2>Continue Shopping</h2></a>");
+        out.println("<a class = 'cont' href = 'cart.jsp'><h2>View Cart</h2></a>");
         con.close();
 
 

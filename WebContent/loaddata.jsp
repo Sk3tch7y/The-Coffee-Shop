@@ -61,7 +61,7 @@ try ( Connection con = DriverManager.getConnection(urlForLoadData, uid, pw); )
 }
 catch (Exception e)
 {
-    out.print(e);
+    out.print(e.toString());
 }  
 %>
 </body>
