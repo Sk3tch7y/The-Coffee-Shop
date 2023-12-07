@@ -1,22 +1,12 @@
 <html>
 <head>
-<title>Ray's Grocery</title>
+<title>The Coffee Shop</title>
 </head>
 <body>
 
-<h1>Enter your customer id and password to complete the transaction:</h1>
+<h2>Checkout with payment and shipping Information</h2>
 
-<form method="get" action="order.jsp">
-<table>
-<tr><td>Customer ID:</td><td><input type="text" name="customerId" size="20"></td></tr>
-<tr><td>Password:</td><td><input type="password" name="password" size="20"></td></tr>
-<tr><td><input type="submit" value="Submit"></td><td><input type="reset" value="Reset"></td></tr>
-</table>
-</form>
-
-<h2>Or checkout with payment and shipping infor</h2>
-
-<form method="get" action="order.jsp">
+<form method="get" action="anOrder.jsp">
 <table>
 <tr><td>Card Name:</td><td><input type="text" name="cardName" size="20"></td></tr>
 <tr><td>Card Number:</td><td><input type="text" name="cardNumber" size="20"></td></tr>

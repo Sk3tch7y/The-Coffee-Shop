@@ -77,7 +77,7 @@ else
 			+"<td align=\"right\">"+currFormat.format(total)+"</td></tr>");
 	out.println("</table>");
 
-	out.println("<h2><a href=\"login.jsp?checkout=1\">Check Out</a></h2>");
+	out.println("<h2><a href=\"checkMeth.jsp?checkout=1\">Check Out</a></h2>");
 }
 %>
 

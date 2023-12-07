@@ -36,7 +36,8 @@ if (session.getAttribute("loginMessage") != null)
 </form>
 
 </div>
-
+<a href="register.jsp">Register</a>
+<a href="forgot.jsp">Forgot Password</a>
 </body>
 </html>
 

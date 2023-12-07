@@ -23,7 +23,7 @@ HashMap<String, ArrayList<Object>> productList = (HashMap<String, ArrayList<Obje
 // If either are not true, display an error message
 
 // Make connection
-try{
+try{	
 
 	String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
     String uid = "SA";
