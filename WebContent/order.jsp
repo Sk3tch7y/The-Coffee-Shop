@@ -84,7 +84,12 @@ try{
 	//close shopping cart and connection
 	session.removeAttribute("productList");
 	con.close();
-	response.sendRedirect("ship.jsp?orderId=" + orderNum);
+	//order confirmation
+	out.println("<h1>Order Confirmed We will send you an email when it ships</h1>");
+	out.println("<h2>Order Number: " + orderNum + "</h2>");
+	out.println("<h2>Order Total: $" + orderTotal + "</h2>");
+	out.println("<h2>Order Date: " + new java.sql.Date(System.currentTimeMillis()) + "</h2>");
+	out.println("<a href=\"index.jsp\">Return to Home Page</a>");
 }
 catch(NullPointerException e){
 	out.println("No products in cart");

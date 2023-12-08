@@ -4,6 +4,8 @@
     font-size: medium;
     color: #5C3B27;
     background-color: #EDE0D4;
+    padding:0;
+    margin:0;
 }
 a{
     color: #5C3B27;
@@ -18,7 +20,7 @@ a:hover{
     text-decoration: none;
 }
 h1{
-    font-size: 2.5rem;
+    font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 2rem;
 
@@ -27,4 +29,27 @@ h2{
     font-size: 1.75rem;
     font-weight: 500;
     margin-bottom: 2rem;
+}
+.nav {
+    width:100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B08968;
+    color: #EDE0D4;
+    margin:0;
+    padding: 0 1rem;
+    padding-top: 0.5rem;
+
+}
+.nav h2{
+    background-color: transparent;
+    display: inline-block;
+}
+.nav a{
+    color: #EDE0D4;
+    background-color: transparent;
+    text-decoration: none;
+    margin-left: 1rem;
 }

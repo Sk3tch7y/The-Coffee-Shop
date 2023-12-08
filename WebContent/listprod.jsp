@@ -15,12 +15,16 @@
 <h1>Search for the products you want to buy:</h1>
 
 <form method="get" action="listprod.jsp">
+<td><div align="right"><font face="Arial, Helvetica, sans-serif" size="2">Category:</font></div></td>
+<input type="text" name="categoryName" size="50">
+<td><div align="right"><font face="Arial, Helvetica, sans-serif" size="2">Product name:</font></div></td>
 <input type="text" name="productName" size="50">
 <input type="submit" value="Submit"><input type="reset" value="Reset"> (Leave blank for all products)
 </form>
 
 <% // Get product name to search for
 String name = request.getParameter("productName");
+String category = request.getParameter("categoryName");
 		
 //Note: Forces loading of SQL Server driver
 try
@@ -45,7 +49,13 @@ try{
 	// Print out the ResultSet
 	
 	//builds table element
-	PreparedStatement pstmt = con.prepareStatement("SELECT productName, productId, productPrice, productDesc, productImage, productImageURL FROM product WHERE productName LIKE ? ORDER BY productName ASC");
+	PreparedStatement pstmt;
+	if(category != null || category != ""){
+			pstmt = con.prepareStatement("SELECT productName, productId, productPrice, productDesc, productImage, productImageURL FROM product JOIN category ON category.categoryId = product.categoryId WHERE productName LIKE ? AND category.categoryName LIKE ? ORDER BY productName ASC");
+			pstmt.setString(2, "%"+category+"%");
+	}else{
+			pstmt = con.prepareStatement("SELECT productName, productId, productPrice, productDesc, productImage, productImageURL FROM product WHERE productName LIKE ? ORDER BY productName ASC");
+	}
 	if(name == null){
 		name = "";
 	}

@@ -9,7 +9,7 @@
 
 <html>
 <head>
-<title>YOUR NAME Grocery Shipment Processing</title>
+<title>The Coffee Shop Shipment Processing</title>
 </head>
 <body>
         
@@ -17,13 +17,26 @@
 
 <%
 	// TODO: Get order id
-    String ordernum = request.getParameter("orderId");
+	String ordernum = request.getParameter("orderId");
+    String veri = "SELECT * FROM customer WHERE userId = ?";
+	String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
+	String uid = "SA";
+	String pw = "304#sa#pw";
+	try{
+    Connection con  =  DriverManager.getConnection(url, uid, pw);
+    PreparedStatement Verify = con.prepareStatement(veri);
+    Verify.setString(1, session.getAttribute("authenticatedUser").toString());
+    ResultSet rs = Verify.executeQuery();
+    if(!rs.next()){
+        response.sendRedirect("login.jsp");
+    }
+	}
+		catch(SQLException e){
+    	out.print(e);
+	}	
 	
 	try{
-		String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
-    	String uid = "SA";
-    	String pw = "304#sa#pw";
-
+		
 		Connection con  =  DriverManager.getConnection(url, uid, pw);
 		PreparedStatement checkOrder = con.prepareStatement("SELECT * FROM ordersummary WHERE orderId = ?");
 		

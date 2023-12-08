@@ -18,13 +18,15 @@ try
 	String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
     String uid = "SA";
     String pw = "304#sa#pw";
-	
+	String userId = session.getParameter("authenticatedUser");
+	if(userId == null){
+		response.sendRedirect("login.jsp");
+	}
 	Connection con  =  DriverManager.getConnection(url, uid, pw);
-	PreparedStatement pstmt = con.prepareStatement("SELECT orderId, orderDate, customerId, totalAmount FROM ordersummary ORDER BY orderDate DESC;");
+	PreparedStatement pstmt = con.prepareStatement("SELECT orderId, orderDate, customerId, totalAmount FROM ordersummary WHERE userId = ? ORDER BY orderDate DESC;");
+	pstmt.setString(1, userId);
 	ResultSet rst = pstmt.executeQuery();
 	
-	
-	while(rst.next()){
 		out.println("<table class = orderList>");
 		NumberFormat currFormat = NumberFormat.getCurrencyInstance();
 		PreparedStatement customerName = con.prepareStatement("SELECT firstName, lastName FROM customer WHERE customerId = '" + rst.getInt("customerId") + "';");
@@ -55,7 +57,6 @@ try
 			+"<td>"+ prst.getInt("quantity") +"</td>" + "<td>"+ currFormat.format(prst.getDouble("price")) +"</td></tr>");
 		}
 		out.println("</table>");
-	}
 	out.println("</table>");
 	con.close();
 }

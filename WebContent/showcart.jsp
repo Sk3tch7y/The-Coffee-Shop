@@ -9,10 +9,10 @@
 <html>
 <head>
 <title>Your Shopping Cart</title>
-<link rel="stylesheet" type="text/css" href="cart.css">
 <link rel="stylesheet" type="text/css" href="standardStyle.css">
 </head>
 <body>
+<%@ include file="header.jsp" %>
 
 <%
 // Get the current list of products
@@ -45,7 +45,7 @@ else
 		out.print("<tr><td>"+product.get(0)+"</td>");
 		out.print("<td>"+product.get(1)+"</td>");
 
-		out.print("<td align=\"center\">"+product.get(3)+"<a class = 'nonpurple' style=\"font-size:24px\"class='remove' href='removeCart.jsp?id="+product.get(0)+"'>-</a></td>");
+		out.print("<td align=\"center\">"+"<a class = 'nonpurple' style=\"font-size:24px\"class='remove' href='addCart.jsp?id="+product.get(0)+"'>+</a>" +product.get(3)+"<a class = 'nonpurple' style=\"font-size:24px\"class='remove' href='removeCart.jsp?id="+product.get(0)+"'>-</a></td>");
 		Object price = product.get(2);
 		Object itemqty = product.get(3);
 		double pr = 0;

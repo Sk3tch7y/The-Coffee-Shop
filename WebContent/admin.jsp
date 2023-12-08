@@ -19,20 +19,18 @@
 <%
 
 
-String sql = "SELECT orderDate, SUM(totalAmount) AS dayTotal from ordersummary GROUP BY orderDate";
+String veri = "SELECT * FROM customer WHERE userId = ?";
 String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
 String uid = "SA";
 String pw = "304#sa#pw";
 try{
     Connection con  =  DriverManager.getConnection(url, uid, pw);
-PreparedStatement pstmt = con.prepareStatement(sql);
-ResultSet rst = pstmt.executeQuery();
-NumberFormat currFormat = NumberFormat.getCurrencyInstance();
-while(rst.next()){
-    String orderdate = rst.getString("orderDate");
-    String money = currFormat.format(rst.getDouble("dayTotal"));
-    out.print("<tr><td>"+ orderdate +"</td><td>" + money +"</td></tr>");
-}
+    PreparedStatement Verify = con.prepareStatement(veri);
+    Verify.setString(1, session.getAttribute("authenticatedUser").toString());
+    ResultSet rs = Verify.executeQuery();
+    if(!rs.next()){
+        response.sendRedirect("login.jsp");
+    }
 }
 catch(SQLException e){
     out.print(e);
@@ -40,6 +38,10 @@ catch(SQLException e){
 
 
 %>
+<h2><a href='salesReport.jsp'>Sales Report</a></h2>
+<h2><a href='shipNum.jsp'>Ship an order</a></h2>
+<h2><a href='lisCust.jsp'>List customers</a></h2>
+<h2><a href='loaddata.jsp'>restore database</a></h2>
 </table>
 </body>
 </html>
