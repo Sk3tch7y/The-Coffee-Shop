@@ -4,6 +4,7 @@
 <%@ page import="javax.naming.*" %>
 <%
     // Get user info from register.jsp
+    String UserAuth = (String)session.getAttribute("authenticatedUser");
     String firstName = request.getParameter("firstName");
     String lastName = request.getParameter("lastName");
     String email = request.getParameter("email");
@@ -21,24 +22,24 @@
     String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
     String uid = "SA";
     String pw = "304#sa#pw";
-    String id = request.getParameter("custId");
     String oldPw = request.getParameter("oldPassword");
 	try{
-        
+        out.print("<h1>please Wait</h1>");
         Connection con  =  DriverManager.getConnection(url, uid, pw);
+        PreparedStatement customer = con.prepareStatement("SELECT customerId FROM customer WHERE userId = ? AND password = ?");
+        customer.setString(1, UserAuth);
+        customer.setString(2, oldPw);
+        ResultSet custResult = customer.executeQuery();
+        custResult.next();
+        String id = custResult.getString("customerId");
         if(!password.equals(confirm) && !password.equals("")){
-            response.sendRedirect("register.jsp?error=confirm="+ password);
-        }
-        PreparedStatement checkPass = con.prepareStatement("SELECT customerId FROM customer WHERE password = ?");
-        checkPass.setString(1, oldPw);
-        ResultSet passResult = checkPass.executeQuery();
-        if(!passResult.next() ){
-            if(!id.equals(passResult.getString("customerId"))){
-                response.sendRedirect("register.jsp?error=oldPw");
-            }
-        }
-        else if(passResult.next()){
+            response.sendRedirect("register.jsp?error=!confirm");
+        }else{
                 // Check if user info exists in the customer database
+            if(password.equals("") || (password == null)){
+                password = oldPw;
+            }
+            out.print("<h1>please Wait</h1>");
             PreparedStatement checkStmt = con.prepareStatement("UPDATE customer SET firstName = ?, lastName = ?,  email = ?, phonenum = ?, address = ?, city = ?, state = ?, postalCode = ?, country = ?,"+
             "userId = ?, password = ?  WHERE customerId = ? AND password = ?");
             checkStmt.setString(1, firstName);
@@ -55,10 +56,10 @@
             checkStmt.setString(12, id);
             checkStmt.setString(13, oldPw);
             checkStmt.executeUpdate();
-            response.sendRedirect("login.jsp");
-
+            response.sendRedirect("logout.jsp");
         }
-    
+        
+        out.print("<h1>please Wait</h1>");
     }
     catch (SQLException e) {
         out.print(e);

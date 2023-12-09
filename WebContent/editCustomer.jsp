@@ -20,14 +20,13 @@
 String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustServerCertificate=true";
 String uid = "SA";
 String pw = "304#sa#pw";
-String custId = request.getParameter("custId");
 try{
 	Connection con  =  DriverManager.getConnection(url, uid, pw);
 	PreparedStatement pstmt = con.prepareStatement("SELECT * FROM customer WHERE userid = ?");
 	pstmt.setString(1, userName);
 	ResultSet rst = pstmt.executeQuery();
 	rst.next();
-	out.println("<form action='verifyChanges.jsp?custId="+custId+"' method='POST'>"+
+	out.println("<form action='verifyChanges.jsp' method='POST'>"+
     "<label for='firstName'>First Name:</label>"+
     "<input type='text' id='firstName' name='firstName' value='"+ rst.getString("firstName")+ "'required><br><br> "+
     

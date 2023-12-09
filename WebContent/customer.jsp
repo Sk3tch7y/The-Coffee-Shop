@@ -40,7 +40,7 @@ try{
 	rst.getString("postalCode")+ " " + rst.getString("country") + "</h3><td></tr>" +
 	"</table></td></tr>"+
 	"</table>");
-	out.println("<h2><a href = 'editCustomer.jsp?custId="+ custId +"''>Edit Profile</a></h2>");
+	out.println("<h2><a href = 'editCustomer.jsp'>Edit Profile</a></h2>");
 }
 catch(Exception e){
 	out.println(e.getMessage());

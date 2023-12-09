@@ -10,7 +10,7 @@
 <table>
 <tr><td>Card Name:</td><td><input type="text" name="cardName" size="20"></td></tr>
 <tr><td>Card Number:</td><td><input type="text" name="cardNumber" size="20"></td></tr>
-<tr><td>Card Expiration Date:</td><td><input type="text" name="cardExpirationDate" size="20"></td></tr>
+<tr><td>Card Expiration Date(year-month):</td><td><input type="text" name="cardExpirationDate" size="20"></td></tr>
 
 <tr><td>Shipping Address:</td><td><input type="text" name="shippingAddress" size="20"></td></tr>
 <tr><td>Shipping City:</td><td><input type="text" name="shippingCity" size="20"></td></tr>

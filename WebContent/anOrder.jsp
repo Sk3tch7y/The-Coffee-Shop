@@ -33,8 +33,18 @@ try{
     String city = request.getParameter("shippingCity");
     String state = request.getParameter("shippingState");
     String postalCode = request.getParameter("shippingZip");
+	String cardNumber = request.getParameter("cardNumber");
+	String cardExpiryDate = request.getParameter("cardExpirationDate");
+	String cardHolderName = request.getParameter("cardName");
+	String cardType = "auto";
     //create prepared statement to insert order payment record
-    PreparedStatement payment = con.prepareStatement("INSERT INTO orderpayment (cardNumber, cardExpiryDate, cardHolderName, cardType) VALUES (?, ?, ?, ?)");
+    PreparedStatement payment = con.prepareStatement("INSERT INTO paymentMethod (paymentNumber, paymentExpiryDate, customerId, paymentType) VALUES (?, ?, ?, ?)");
+	cardExpiryDate = cardExpiryDate + "-01";
+	payment.setString(1, cardNumber);
+	payment.setDate(2, java.sql.Date.valueOf(cardExpiryDate));
+	payment.setString(3, null);
+	payment.setString(4, cardType);
+	payment.executeUpdate();
 	// Create prepared statement to insert order record
 	PreparedStatement pstmt = con.prepareStatement("INSERT INTO ordersummary (orderDate, totalAmount, shipToAddress, shipToCity, shipToState, shipToPostalCode, customerId)"+
 	" VALUES (?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
@@ -86,6 +96,10 @@ try{
 catch(NullPointerException e){
 	out.println("No products in cart");
 	response.sendRedirect("index.jsp");
+}
+catch(SQLException e){
+	out.println(e);
+			return;
 }
 catch(Exception e){
 	out.println(e);

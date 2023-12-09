@@ -41,8 +41,8 @@ String url = "jdbc:sqlserver://cosc304-sqlserver:1433;databaseName=orders;trustS
         }
         out.println("<br><a href='review.jsp?id=");
 		//push name, price, and ID to reviews page
-		out.print(rst.getString("productId"))+ "'>";
-        out.println("<h2>Reviews</h2></a>")
+		out.print(rst.getString("productId")+ "'>");
+        out.println("<h2>Reviews</h2></a>");
         
         out.println("<br><a class = 'addToCart' href='addcart.jsp?id=");
 		//push name, price, and ID to cart page

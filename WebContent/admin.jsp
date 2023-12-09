@@ -42,6 +42,7 @@ catch(SQLException e){
 <h2><a href='shipNum.jsp'>Ship an order</a></h2>
 <h2><a href='lisCust.jsp'>List customers</a></h2>
 <h2><a href='loaddata.jsp'>restore database</a></h2>
+<h2><a href='listorderAdmin.jsp'>List orders</a></h2>
 </table>
 </body>
 </html>
